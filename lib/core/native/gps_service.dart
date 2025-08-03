@@ -13,7 +13,7 @@ class GpsService {
         };
       }
     } on PlatformException catch (e) {
-      print('Error getting location: ${e.message}');
+      throw Exception('Error getting location: ${e.toString()}');
     }
     return null;
   }

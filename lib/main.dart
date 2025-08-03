@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:device_preview/device_preview.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_native_example/config/routes/router.dart';
 import 'package:flutter_native_example/core/theme/app_theme.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
-  runApp(const ProviderScope(child: MyApp()));
+  runApp(
+    ProviderScope(
+      child: DevicePreview(
+        enabled: !kReleaseMode,
+        builder: (context) => const MyApp(),
+      ),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -13,6 +22,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      builder: DevicePreview.appBuilder,
       debugShowCheckedModeBanner: false,
       routerConfig: AppRouter.routes,
       theme: getDarkTheme(),
