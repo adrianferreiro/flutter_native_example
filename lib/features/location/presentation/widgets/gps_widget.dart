@@ -13,6 +13,7 @@ class GpsWidget extends ConsumerWidget {
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
+      spacing: 20,
       children: [
         state is LocationInitial
             ? const Text('Presioná el botón para obtener la ubicación')
@@ -26,10 +27,13 @@ class GpsWidget extends ConsumerWidget {
             : state is LocationError
             ? Text(state.message, style: const TextStyle(color: Colors.red))
             : const SizedBox.shrink(),
-        const SizedBox(height: 20),
-        ElevatedButton(
-          onPressed: () => controller.fetchLocation(),
-          child: const Text('Obtener ubicación'),
+        Container(
+          margin: const EdgeInsets.all(10),
+          width: double.infinity,
+          child: ElevatedButton(
+            onPressed: () => controller.fetchLocation(),
+            child: const Text('Obtener ubicación'),
+          ),
         ),
       ],
     );

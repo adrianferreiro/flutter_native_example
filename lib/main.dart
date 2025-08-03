@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_native_example/config/routes/router.dart';
+import 'package:flutter_native_example/core/theme/app_theme.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import 'package:flutter_native_example/features/location/presentation/screen.dart/location_screen.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -12,9 +12,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      home: LocationScreen(),
+      routerConfig: AppRouter.routes,
+      theme: getDarkTheme(),
     );
   }
 }
